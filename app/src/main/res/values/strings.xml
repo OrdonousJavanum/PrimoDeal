@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">PrimoDeal</string>
+    <string name="textEmail">Email:</string>
+    <string name="hintInput">Enter email here</string>
+    <string name="textPassword">Password:</string>
+    <string name="titleApp">PrimoDeal</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="sellerChoice">I am a seller</string>
+    <string name="customerChoice">I am a customer</string>
+    <string name="title_activity_customer_register">CustomerRegisterActivity</string>
+    <string name="registerFormTitle">Register Form: Customer</string>
+    <string name="registerFormTitleSeller">Register Form: Seller</string>
+    <string name="textName">Name:</string>
+    <string name="textFirstName">FirstName</string>
+    <string name="textBirthdate">Birthdate:</string>
+    <string name="textPwConfirmation">Password confirmation:</string>
+    <string name="textPw">Password</string>
+    <string name="shop_address">Shop Address</string>
+</resources>

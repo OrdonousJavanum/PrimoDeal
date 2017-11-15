@@ -17,6 +17,8 @@ public class LoginActivity extends AppCompatActivity {
     {
         Intent explicitIntent = new Intent(this, TypeUserRegisterActivity.class);
        // final Intent msg = explicitIntent.putExtra("msg", "Données trop classes");
+
+        // test voila quoi !
         startActivityForResult(explicitIntent, 1);
     }
 }

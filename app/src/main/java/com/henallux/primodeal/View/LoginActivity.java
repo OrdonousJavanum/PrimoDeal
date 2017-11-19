@@ -1,9 +1,11 @@
-package com.henallux.primodeal;
+package com.henallux.primodeal.View;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+
+import com.henallux.primodeal.R;
 
 public class LoginActivity extends AppCompatActivity {
 

@@ -59,8 +59,9 @@ public class SellerRegisterActivity extends AppCompatActivity {
                 } catch (InscriptionException e) {
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
                     toast.show();
+                } catch (Exception e) {
+                    e.printStackTrace();
                 }
-                System.out.println(person.toString());
 
 
             }

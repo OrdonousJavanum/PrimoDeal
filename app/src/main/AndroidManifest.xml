@@ -19,6 +19,7 @@
         <activity android:name=".View.TypeUserRegisterActivity" />
         <activity android:name=".View.CustomerRegisterActivity" />
         <activity android:name=".View.SellerRegisterActivity"></activity>
+        <uses-permision android:name="android.permission.INTERNET"/>
     </application>
 
 </manifest>

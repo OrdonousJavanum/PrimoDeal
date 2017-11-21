@@ -34,14 +34,23 @@ public class CustomerRegisterActivity extends AppCompatActivity {
             public void onClick(View view) {
                 System.out.println(first_namePath.getText());
 
-                person = new Person(
-                        first_namePath.getText().toString(),
-                        last_namePath.getText().toString(),
-                        emailPath.getText().toString(),
-                        passwordPath.getText().toString()
-                );
+                try {
+                    person = new Person(
+                            first_namePath.getText().toString(),
+                            last_namePath.getText().toString(),
+                            emailPath.getText().toString(),
+                            passwordPath.getText().toString()
+                    );
+                } catch (InscriptionException e) {
+                    e.printStackTrace();
+                }
                 System.out.println(person.toString());
-                controller.addPerson(person);
+
+                try {
+                    controller.addPerson(person);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
 
 
             }

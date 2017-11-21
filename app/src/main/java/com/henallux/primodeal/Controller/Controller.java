@@ -16,8 +16,7 @@ public class Controller {
         personBusiness = new PersonBusiness();
     }
 
-    public void addPerson(Person person)
-    {
+    public void addPerson(Person person) throws Exception {
         personBusiness.addPerson(person);
     }
 

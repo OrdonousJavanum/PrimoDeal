@@ -23,7 +23,7 @@ public class PersonDao implements PersonInterface {
 
     @Override
     public void addPerson(Person person) throws  Exception{
-        System.out.println("add personne dataAccss");
+        System.out.println("add personne dataAccss ********************************************");
 
         Gson gson = new Gson();
         String personJSON = gson.toJson(person);

@@ -17,4 +17,15 @@
     <string name="textPwConfirmation">Password confirmation:</string>
     <string name="textPw">Password</string>
     <string name="shop_address">Shop Address</string>
+    <string name="buttonNewPublication">New publication</string>
+    <string name="buttonMyPublication">My Publication</string>
+    <string name="buttonAllPublications">All publications of Namur</string>
+    <string name="TitelCreatePublication">Title</string>
+    <string name="DescriptionPublicationText">Description of publication</string>
+    <string name="buttonAddQuestion">Add question</string>
+    <string name="QuestionPublication">Question</string>
+    <string name="ResponseQuestionSellerText">Response</string>
+    <string name="buttonAddResponsePublicationSeller">Add response</string>
+    <string name="buttonCancelPublicationSeller">Cancel</string>
+    <string name="buttonPostPublication">Post</string>
 </resources>

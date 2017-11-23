@@ -1,5 +1,6 @@
 package com.henallux.primodeal.View;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -55,7 +56,9 @@ public class SellerRegisterActivity extends AppCompatActivity {
                             streetPath.getText().toString(),
                             Integer.parseInt(zipPath.getText().toString())
                     );
-                    controller.addPerson(person);
+                    // controller.addPerson(person);
+                    Intent intent = new Intent(SellerRegisterActivity.this, SellerMenuActivity.class);
+                    startActivity(intent);
                 } catch (InscriptionException e) {
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
                     toast.show();

@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -27,6 +28,9 @@ public class PersonDao implements PersonInterface {
     public void addPerson(Person person) throws  Exception{
         System.out.println("add personne dataAccss ********************************************");
 
+        Gson gson = new Gson();
+
+        String personJSON = gson.toJson(person);
 
 
 
@@ -36,6 +40,8 @@ public class PersonDao implements PersonInterface {
         connection.setRequestProperty("Content-type", "application/json");
         OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
         connection.connect();
+
+
 
         int codeResult = connection.getResponseCode();
         if(codeResult == 200)

@@ -57,6 +57,7 @@ public class SellerRegisterActivity extends AppCompatActivity {
                             Integer.parseInt(zipPath.getText().toString())
                     );
                     // controller.addPerson(person);
+                    // async args
                     Intent intent = new Intent(SellerRegisterActivity.this, SellerMenuActivity.class);
                     startActivity(intent);
                 } catch (InscriptionException e) {

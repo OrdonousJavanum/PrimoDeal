@@ -8,6 +8,6 @@ import java.io.IOException;
 
 public interface PersonInterface {
 
-    public void addPerson(Person person) throws Exception;
+    void addPerson(Person person) throws Exception;
 
 }

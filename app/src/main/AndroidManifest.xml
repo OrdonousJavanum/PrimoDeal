@@ -21,7 +21,7 @@
         <activity android:name=".View.SellerRegisterActivity"></activity>
         <activity android:name=".View.SellerMenuActivity"/>
         <activity android:name=".View.NewPublicationSellerActivity"/>
-        <uses-permision android:name="android.permission.INTERNET"/>
-    </application>
 
+    </application>
+    <uses-permision android:name="android.permission.INTERNET"/>
 </manifest>

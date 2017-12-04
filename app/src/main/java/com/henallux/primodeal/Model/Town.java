@@ -10,10 +10,12 @@ public class Town {
 
     private String city_name;
     private Integer zip;
+    private Country country;
 
-    public Town(String city_name, Integer zip) {
+    public Town(String city_name, Integer zip, Country country) {
         this.city_name = city_name;
         this.zip = zip;
+        this.country = country;
     }
 
     public String getCity_name() {

@@ -33,8 +33,12 @@ public class Town {
         return zip;
     }
 
-    public void setZip(Integer zip) {
-        this.zip = zip;
+    public void setZip(Integer zip) throws InscriptionException
+    {
+        if(zip.equals("")|| !estNumeric(zip))
+            throw new InscriptionException(9);
+        else
+            this.zip = zip;
     }
 
     public static boolean estAlphabetique(String chaine)
@@ -50,6 +54,11 @@ public class Town {
             }
         }
         return valeur;
+    }
+
+    public static boolean estNumeric(Integer num)
+    {
+        return true;
     }
 
 }

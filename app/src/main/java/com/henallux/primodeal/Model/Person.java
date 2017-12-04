@@ -13,7 +13,7 @@ public class Person {
 
     private String first_name, last_name, email, password, shop_name, shop_description, city, street;
     private Integer zip;
-    private Country country
+    private Town town;
 
 
     public Person(String first_name, String last_name, String email, String password, String shop_name, String shop_description, String city, String street, Integer zip) throws InscriptionException {

@@ -27,8 +27,7 @@ public class PersonDao implements PersonInterface {
     public void addPerson(Person person) throws  Exception{
         System.out.println("add personne dataAccss ********************************************");
 
-        Gson gson = new Gson();
-        String personJSON = gson.toJson(person);
+
 
 
         URL url = new URL("http://webapplicationprimodeal20171101074235.azurewebsites.net/api/sellers");
@@ -49,7 +48,6 @@ public class PersonDao implements PersonInterface {
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
         StringBuilder stringBuilder = new StringBuilder();
 
-        bufferedWriter.write(personJSON);
         bufferedWriter.close();
 
     }

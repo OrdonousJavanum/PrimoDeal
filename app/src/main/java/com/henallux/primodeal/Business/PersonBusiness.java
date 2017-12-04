@@ -8,12 +8,12 @@ import com.henallux.primodeal.Model.PersonInterface;
  * Created by bil on 19-11-17.
  */
 
-public class PersonBusiness {
-
+    public class PersonBusiness{
     private PersonInterface personInterface;
+    private int test;
 
     public PersonBusiness(){
-        personInterface = new PersonDao();
+       // personInterface = new PersonDao();
     }
 
     public void addPerson(Person person) throws Exception {

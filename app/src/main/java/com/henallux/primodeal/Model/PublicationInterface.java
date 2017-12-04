@@ -6,6 +6,6 @@ package com.henallux.primodeal.Model;
 
 public interface PublicationInterface {
 
-    public void addPublication(Publication publication);
+    void addPublication(Publication publication);
 
 }

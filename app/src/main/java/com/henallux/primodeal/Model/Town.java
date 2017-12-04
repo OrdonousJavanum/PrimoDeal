@@ -50,9 +50,7 @@ public class Town {
         {
             if(!Character.isLetter(s[i])&& valeur)
             {
-                valeur = false;
-                if(s[i]=='-'||s[i]==' ' || s[i]=='\'')
-                    valeur=true;
+                valeur = s[i] == '-' || s[i] == ' ' || s[i] == '\'';
             }
         }
         return valeur;

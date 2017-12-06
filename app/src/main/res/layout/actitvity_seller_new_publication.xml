@@ -36,52 +36,25 @@
                     android:layout_height="55dp"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/textTitlePublicationText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/TitelCreatePublication"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
-
-                    <EditText
-                        android:id="@+id/inputTitelPubliction"
-                        android:layout_width="wrap_content"
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_titlePublication"
+                        android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.95"
-                        android:ems="10"
-                        android:inputType="textPersonName" />
+                        android:hint="@string/hint_titlePublication" />
 
                 </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="28dp"
-                    android:layout_weight="0.04"
+                    android:layout_height="36dp"
+                    android:layout_weight="1"
                     android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/DescriptionPublicationText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/DescriptionPublicationText" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="81dp"
-                    android:orientation="horizontal">
-
-                    <EditText
-                        android:id="@+id/DescriptionPublicationEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                         />
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/input_descriptionPublication"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_descriptionPublication" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -91,7 +64,7 @@
 
                     <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:orientation="vertical">
 
                         <Button
@@ -101,69 +74,30 @@
                             android:text="@string/buttonAddQuestion" />
                     </LinearLayout>
                 </LinearLayout>
+<android.support.v7.widget.LinearLayoutCompat
+    android:layout_width="match_parent"
+    android:layout_height="200dp"
+    android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="72dp"
-                    android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/questionText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/QuestionPublication" />
+                <fragment
+                    android:id="@+id/fragmentQuestion"
+                    android:name="com.henallux.primodeal.View.QuestionFragment"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:orientation="horizontal"
+                    tools:layout="@layout/fragment_question">
 
-                    <EditText
-                        android:id="@+id/QuestionEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                         />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="76dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/responseText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:text="@string/ResponseQuestionSellerText" />
-
-                    <EditText
-                        android:id="@+id/ResponseEditText"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:ems="10"
-                        android:inputType="textPersonName"
-                        />
-
-                </LinearLayout>
+                </fragment>
+</android.support.v7.widget.LinearLayoutCompat>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <Button
-                        android:id="@+id/addResponseButton"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/buttonAddResponsePublicationSeller" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:gravity="bottom"
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
                     <Button
                         android:id="@+id/buttonCancelPublication"
@@ -181,6 +115,7 @@
                 </LinearLayout>
 
             </LinearLayout>
+
         </LinearLayout>
 
     </LinearLayout>

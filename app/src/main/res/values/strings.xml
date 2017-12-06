@@ -28,4 +28,10 @@
     <string name="buttonAddResponsePublicationSeller">Add response</string>
     <string name="buttonCancelPublicationSeller">Cancel</string>
     <string name="buttonPostPublication">Post</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="input_question">question</string>
+    <string name="hint_question">Question</string>
+    <string name="hint_descriptionPublication">Description of the publication</string>
+    <string name="hint_titlePublication">Title</string>
 </resources>

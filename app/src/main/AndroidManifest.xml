@@ -23,5 +23,5 @@
         <activity android:name=".View.NewPublicationSellerActivity"/>
 
     </application>
-    <uses-permision android:name="android.permission.INTERNET"/>
+
 </manifest>

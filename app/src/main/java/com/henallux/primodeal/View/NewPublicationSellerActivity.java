@@ -39,8 +39,8 @@ public class NewPublicationSellerActivity extends AppCompatActivity {
         setContentView(R.layout.actitvity_seller_new_publication);
         //QuestionFragment question = (QuestionFragment)findViewById(R.id.fragmentQuestion);
 
-        titlePublication_path = (EditText) findViewById(R.id.inputTitelPubliction);
-        descriptionPublication_path = (EditText) findViewById(R.id.DescriptionPublicationEditText);
+        titlePublication_path = (EditText) findViewById(R.id.input_titlePublication);
+        descriptionPublication_path = (EditText) findViewById(R.id.input_descriptionPublication);
 
 
         postButton = (Button) findViewById(R.id.buttonPostPublication);

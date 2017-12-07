@@ -74,28 +74,29 @@
                             android:text="@string/buttonAddQuestion" />
                     </LinearLayout>
                 </LinearLayout>
-<android.support.v7.widget.LinearLayoutCompat
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:orientation="horizontal">
+
+                <android.support.v7.widget.LinearLayoutCompat
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
 
 
-                <fragment
-                    android:id="@+id/fragmentQuestion"
-                    android:name="com.henallux.primodeal.View.QuestionFragment"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:orientation="horizontal"
-                    tools:layout="@layout/fragment_question">
+                    <fragment
+                        android:id="@+id/fragmentQuestion"
+                        android:name="com.henallux.primodeal.View.QuestionFragment"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent"
+                        android:orientation="horizontal"
+                        tools:layout="@layout/fragment_question">
 
-                </fragment>
-</android.support.v7.widget.LinearLayoutCompat>
+                    </fragment>
+                </android.support.v7.widget.LinearLayoutCompat>
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:gravity="bottom"
+                    android:layout_weight="0"
                     android:orientation="horizontal"
                     android:visibility="visible">
 

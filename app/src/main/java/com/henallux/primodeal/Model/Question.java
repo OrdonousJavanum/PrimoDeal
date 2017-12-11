@@ -2,6 +2,9 @@ package com.henallux.primodeal.Model;
 
 import com.henallux.primodeal.Exception.PublicationException;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by bil on 23-11-17.
  */
@@ -10,12 +13,13 @@ public class Question {
 
     private String question_name;
     private Answer answer;
-    private Answer[] tabAnswer = new Answer[100];
+    private List<QuestionChoice> listQuestionChoice;
 
+/*
     public Question(String question_name, Answer answer)throws PublicationException {
         setQuestion_name(question_name);
         this.answer = answer;
-    }
+    }*/
 
     public String getQuestion_name() {
         return question_name;
@@ -36,11 +40,19 @@ public class Question {
         this.answer = answer;
     }
 
-    public Answer[] getTabAnswer() {
-        return tabAnswer;
+    public  List<QuestionChoice> getListQuestionChoice() {
+        return listQuestionChoice;
     }
 
-    public void setTabAnswer(Answer[] tabAnswer) {
-        this.tabAnswer = tabAnswer;
+    public void setListQuestionChoice(List<QuestionChoice> listQuestionChoice) {
+        this.listQuestionChoice = listQuestionChoice;
+    }
+
+    public void addQuestionChoice(QuestionChoice questionChoice) {
+        if(listQuestionChoice == null)
+        {
+            listQuestionChoice = new ArrayList<>();
+        }
+        this.listQuestionChoice.add(questionChoice);
     }
 }

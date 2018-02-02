@@ -1,6 +1,7 @@
 package com.henallux.primodeal.Business;
 
 import com.henallux.primodeal.DataAccess.PersonDao;
+import com.henallux.primodeal.Model.LoginForm;
 import com.henallux.primodeal.Model.Person;
 import com.henallux.primodeal.Model.PersonInterface;
 
@@ -16,7 +17,7 @@ import com.henallux.primodeal.Model.PersonInterface;
        // personInterface = new PersonDao();
     }
 
-    public void addPerson(Person person) throws Exception {
-        personInterface.addPerson(person);
+    public void login(LoginForm loginForm) throws Exception {
+        personInterface.login(loginForm);
     }
 }

@@ -8,6 +8,6 @@ import java.io.IOException;
 
 public interface PersonInterface {
 
-    void addPerson(Person person) throws Exception;
+    public void login(LoginForm loginForm) throws Exception;
 
 }

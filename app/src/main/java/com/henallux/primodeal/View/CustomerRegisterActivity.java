@@ -47,7 +47,7 @@ public class CustomerRegisterActivity extends AppCompatActivity {
                 System.out.println(person.toString());
 
                 try {
-                    controller.addPerson(person);
+                   // controller.addPerson(person);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

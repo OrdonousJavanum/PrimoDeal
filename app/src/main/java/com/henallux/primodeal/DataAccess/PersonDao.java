@@ -1,5 +1,6 @@
 package com.henallux.primodeal.DataAccess;
 
+import com.henallux.primodeal.Model.LoginForm;
 import com.henallux.primodeal.Model.Person;
 import com.henallux.primodeal.Model.PersonInterface;
 
@@ -25,16 +26,17 @@ import com.google.gson.*;
 public class PersonDao implements PersonInterface {
 
     @Override
-    public void addPerson(Person person) throws  Exception{
-        System.out.println("add personne dataAccss ********************************************");
-
+    public void login(LoginForm loginForm) throws  Exception{
+       System.out.println("add personne dataAccss ********************************************");
+        System.out.println(loginForm.getEmail()+" "+loginForm.getPassword());
+/*
         Gson gson = new Gson();
 
-        String personJSON = gson.toJson(person);
+        String loginJSON = gson.toJson(loginForm);
 
 
 
-        URL url = new URL("http://webapplicationprimodeal20171101074235.azurewebsites.net/api/sellers");
+        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         connection.setRequestMethod("Post");
         connection.setRequestProperty("Content-type", "application/json");
@@ -54,7 +56,9 @@ public class PersonDao implements PersonInterface {
         BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
         StringBuilder stringBuilder = new StringBuilder();
 
-        bufferedWriter.close();
+        bufferedWriter.close();*/
 
     }
+
+
 }

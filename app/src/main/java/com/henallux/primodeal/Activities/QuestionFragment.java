@@ -1,4 +1,4 @@
-package com.henallux.primodeal.View;
+package com.henallux.primodeal.Activities;
 
 
 import android.content.Context;
@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.TextView;
 
 import com.henallux.primodeal.R;
 

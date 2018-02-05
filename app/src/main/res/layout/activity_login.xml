@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.henallux.primodeal.View.LoginActivity">
+    tools:context="com.henallux.primodeal.Activities.LoginActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -102,7 +102,7 @@
                         android:layout_weight="1"
                         android:text="@string/register"
                         tools:ignore="ButtonStyle"
-                        android:onClick="goToTypeUserRegisterActivity"/>
+                        />
 
                     <Button
                         android:id="@+id/buttonLogin"

@@ -1,63 +1,98 @@
 package com.henallux.primodeal.DataAccess;
 
 import com.henallux.primodeal.Model.LoginForm;
-import com.henallux.primodeal.Model.Person;
-import com.henallux.primodeal.Model.PersonInterface;
 
-import org.json.JSONObject;
-
-import java.io.BufferedOutputStream;
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.io.Writer;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.net.URLConnection;
+
 import com.google.gson.*;
+import com.henallux.primodeal.Model.Person;
 
 /**
  * Created by bil on 19-11-17.
  */
 
-public class PersonDao implements PersonInterface {
+public class PersonDao {
 
-    @Override
-    public void login(LoginForm loginForm) throws  Exception{
-       System.out.println("add personne dataAccss ********************************************");
-        System.out.println(loginForm.getEmail()+" "+loginForm.getPassword());
-/*
+
+    public int login(String email, String password) throws  Exception {
+
+        int code=-1;
         Gson gson = new Gson();
+        LoginForm model = new LoginForm(email,password);
+        String stringJSON = gson.toJson(model);
+        try{
 
-        String loginJSON = gson.toJson(loginForm);
+            URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-type","application/json");
+            connection.setDoOutput(true);
+            OutputStream out = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            //OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
+            connection.connect();
 
 
 
-        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
-        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-        connection.setRequestMethod("Post");
-        connection.setRequestProperty("Content-type", "application/json");
-        OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
-        connection.connect();
+            writer.write(stringJSON.toString());
+            writer.flush();
+            writer.close();
+            out.close();
+            code=connection.getResponseCode();
 
+            if(code ==200){
+                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+                StringBuilder stringBuilder = new StringBuilder();
+                String stringeJSON = "", line;
+                while ((line = reader.readLine()) != null)
+                {
+                    stringBuilder.append(line);
+                }
+                reader.close();
+                System.out.println(code);
 
+            }
+            System.out.println(code);
 
-        int codeResult = connection.getResponseCode();
-        if(codeResult == 200)
-        {
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-
+            connection.disconnect();
+        }catch(Exception e){
+            e.printStackTrace();
         }
+        return code;
+    }
 
+    public int inscription(String email,String password, String role) throws Exception
+    {
+        int code =-1;
 
-        BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(connection.getOutputStream()));
-        StringBuilder stringBuilder = new StringBuilder();
-
-        bufferedWriter.close();*/
-
+        Person model = new Person(email,password,role);
+        Gson gson = new Gson();
+        String stringJSON = gson.toJson(model);
+        try{
+            URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/Account");
+            HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+            connection.setRequestMethod("POST");
+            connection.setRequestProperty("Content-type","application/json");
+            connection.setDoOutput(true);
+            OutputStream out = connection.getOutputStream();
+            OutputStreamWriter writer = new OutputStreamWriter(out);
+            connection.connect();
+            writer.write(stringJSON.toString());
+            writer.flush();
+            writer.close();
+            out.close();
+            code=connection.getResponseCode();
+            connection.disconnect();
+            if(code ==201){
+                System.out.print("oké inscrit");
+            }
+        }catch(Exception e){ e.printStackTrace(); }
+        return code;
     }
 
 

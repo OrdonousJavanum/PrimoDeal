@@ -1,4 +1,4 @@
-package com.henallux.primodeal.View;
+package com.henallux.primodeal.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -22,7 +22,7 @@ public class TypeUserRegisterActivity extends AppCompatActivity {
 
     public void goToSellerRegisterActivity(View v)
     {
-        Intent explicitIntent = new Intent(this, SellerRegisterActivity.class);
+        Intent explicitIntent = new Intent(this, PersonRegisterActivity.class);
         startActivityForResult(explicitIntent, 1);
     }
 

@@ -77,6 +77,9 @@ public class LoginActivity extends AppCompatActivity {
             try {
                 System.out.println("ici ");
                 code = personDao.login(strings[0],strings[1]);
+                if(code == 200)
+                    startActivity(new Intent(LoginActivity.this, NewsfeedActivity.class));
+
             } catch (Exception e) {
                 Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
                 toast.show();

@@ -28,6 +28,7 @@
         <activity android:name=".Activities.PersonRegisterActivity"></activity>
         <activity android:name=".Activities.SellerMenuActivity"/>
         <activity android:name=".Activities.NewPublicationSellerActivity"/>
+        <activity android:name=".Activities.NewsfeedActivity"/>
 
 
 

@@ -37,11 +37,10 @@ public class PublicationDao {
     public List<Publication> Get() throws Exception {
         URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
         connection.setRequestMethod("GET");
         connection.setRequestProperty("Content-type","application/json");
-        connection.setDoOutput(true);
-        OutputStream out = connection.getOutputStream();
-        OutputStreamWriter writer = new OutputStreamWriter(out);
+
         connection.connect();
 
 

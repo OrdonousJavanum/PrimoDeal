@@ -53,6 +53,7 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     private List<Publication> genererTweets() throws Exception {
         new PublicationList().execute();
+
         List<Publication> tweets = new ArrayList<Publication>();
        /* tweets.add(new Publication("Florent", "Mon premier tweet !"));
         tweets.add(new Publication("Kevin", "C'est ici que ça se passe !"));
@@ -83,6 +84,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
 
+            System.out.println(list);
             return list;
         }
 

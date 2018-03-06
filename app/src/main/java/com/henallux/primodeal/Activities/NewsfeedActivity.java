@@ -23,11 +23,6 @@ import java.util.List;
 
 public class NewsfeedActivity extends AppCompatActivity {
     private List<Publication> publicationList;
-    ListView mGardenList;
-    String[] gardens = new String[]{
-            "La poterne des peupliers", "Rainbow garden", "Les roses de Martha",
-            "Le poireau Agile", "Le Semi Urbain", "La Note Bleue"
-    };
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -35,41 +30,25 @@ public class NewsfeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
-        mGardenList = (ListView) findViewById(R.id.gardenList);
-
-        try {
-            afficherListeTweets();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-    private void afficherListeNoms(){
-        //android.R.layout.simple_list_item_1 est une vue disponible de base dans le SDK android,
-        //Contenant une TextView avec comme identifiant "@android:id/text1"
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(NewsfeedActivity.this, android.R.layout.simple_list_item_1, gardens);
-        mGardenList.setAdapter(adapter);
-    }
-
-    private List<Publication> genererTweets() throws Exception {
         new PublicationList().execute();
 
-        List<Publication> tweets = new ArrayList<Publication>();
-       /* tweets.add(new Publication("Florent", "Mon premier tweet !"));
-        tweets.add(new Publication("Kevin", "C'est ici que ça se passe !"));
-        tweets.add(new Publication("Logan", "Que c'est beau..."));
-        tweets.add(new Publication("Mathieu", "Il est quelle heure ??"));
-        tweets.add(new Publication("Willy", "On y est presque"));*/
-      // tweets =
-        return tweets;
     }
 
-    private void afficherListeTweets() throws Exception {
-        List<Publication> tweets = genererTweets();
+    private void publicationView()
+    {
+        List<Publication>  publications = new ArrayList<>();
 
-        PublicationAdapter adapter = new PublicationAdapter(NewsfeedActivity.this, tweets);
-        mGardenList.setAdapter(adapter);
+        publications.addAll(publicationList);
+
+
+
+        PublicationAdapter publicationAdapter = new PublicationAdapter(this, publications);
+        ListView listView = (ListView)findViewById(R.id.gardenList);
+        listView.setAdapter(publicationAdapter);
     }
+
+
+
 
     private class PublicationList extends AsyncTask<Void,Void,List<Publication>>
     {
@@ -93,6 +72,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 Toast.makeText(NewsfeedActivity.this, errorMsg, Toast.LENGTH_LONG).show();
             } else {
                 publicationList = list;
+                publicationView();
             }
         }
     }

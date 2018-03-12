@@ -6,10 +6,11 @@ package com.henallux.primodeal.Model;
 
 public class Person {
 
-    private String userName, password, status, addressShop, nameShop;
+    private String userName, password, status, addressShop, nameShop, email;
 
     public Person(String userName, String password,String addressShop, String nameShop, String status){
         this.userName = userName;
+        this.email = userName;
         this.password = password;
         this.addressShop = addressShop;
         this.nameShop = nameShop;
@@ -19,6 +20,7 @@ public class Person {
     public Person(String userName, String password, String status)
     {
         this.userName = userName;
+        this.email = userName;
         this.password = password;
         this.status = status;
     }

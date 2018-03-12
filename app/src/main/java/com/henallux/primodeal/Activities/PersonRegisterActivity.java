@@ -16,8 +16,8 @@ import com.henallux.primodeal.R;
 public class PersonRegisterActivity extends AppCompatActivity {
 
     private Button createPersonButton;
-    private EditText email_path, password_path;
-    private String role;
+    private EditText email_path, password_path, addressShopPath, nameShopPath ;
+    private String status;
     private PersonDao personDao = new PersonDao();
 
 
@@ -28,13 +28,15 @@ public class PersonRegisterActivity extends AppCompatActivity {
 
         email_path = (EditText) findViewById(R.id.inputEmailRegister);
         password_path = (EditText) findViewById(R.id.inputPasswordRegister);
+        addressShopPath = (EditText) findViewById(R.id.inputAddressShop);
+        nameShopPath = (EditText) findViewById(R.id.inputShopName);
 
         createPersonButton = (Button) findViewById(R.id.buttonRegister);
         createPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 try {
-                    new RecordPersonAsync().execute(email_path.getText().toString(), password_path.getText().toString());
+                    new RecordPersonAsync().execute(email_path.getText().toString(), password_path.getText().toString(), addressShopPath.getText().toString(), nameShopPath.getText().toString());
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
                     toast.show();
@@ -51,11 +53,11 @@ public class PersonRegisterActivity extends AppCompatActivity {
         switch(view.getId()) {
             case R.id.radio_costumer:
                 if (checked)
-                    role = "costumer";
+                    status = "costumer";
                     break;
             case R.id.radio_seller:
                 if (checked)
-                    role="seller";
+                    status="seller";
                     break;
         }
     }
@@ -67,18 +69,25 @@ public class PersonRegisterActivity extends AppCompatActivity {
 
             try {
                 System.out.println("ici ");
-                code = personDao.inscription(strings[0],strings[1],role);
-                if(code == 201)
+                code = personDao.inscription(strings[0],strings[1], strings[2],strings[3] ,status);
+                System.out.println("la :"+code);
+                if(code == 200)
                 {
-                    Toast toast = Toast.makeText(getApplicationContext(), "Bienvenue", Toast.LENGTH_LONG);
-                    toast.show();
-                    /*
-                    Intent intent = new Intent(PersonRegisterActivity.this, P.class);
-                    startActivity(intent);*/
+
+                    if(status.equals("costumer")){
+                    Intent intent = new Intent(PersonRegisterActivity.this, NewsfeedActivity.class);
+                        startActivity(intent);}
+
+                    if(status.equals("seller"))
+                    {
+                        Intent intent = new Intent(PersonRegisterActivity.this, SellerMenuActivity.class);
+                        startActivity(intent);
+                    }
+
                 }
             } catch (Exception e) {
-                Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
-                toast.show();
+               /* Toast toast = Toast.makeText(getApplicationContext(), e.getMessage().toString(), Toast.LENGTH_LONG);
+                toast.show();*/
             }
 
             return code;

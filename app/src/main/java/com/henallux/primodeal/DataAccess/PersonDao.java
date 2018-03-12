@@ -25,6 +25,7 @@ public class PersonDao {
         Gson gson = new Gson();
         LoginForm model = new LoginForm(email,password);
         String stringJSON = gson.toJson(model);
+        System.out.println(stringJSON.toString());
         try{
 
             URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
@@ -66,13 +67,22 @@ public class PersonDao {
         return code;
     }
 
-    public int inscription(String email,String password, String role) throws Exception
+    public int inscription(String userName,String password,String nameShop, String addressShop ,String status) throws Exception
     {
         int code =-1;
 
-        Person model = new Person(email,password,role);
         Gson gson = new Gson();
+        Person model;
+        if(nameShop == null || nameShop.equals(""))
+        {
+            model = new Person(userName,password, status);
+        }
+        else
+        {
+            model = new Person(userName,password,nameShop,addressShop,status);
+        }
         String stringJSON = gson.toJson(model);
+        System.out.println(stringJSON.toString());
         try{
             URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/Account");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
@@ -82,6 +92,7 @@ public class PersonDao {
             OutputStream out = connection.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(out);
             connection.connect();
+
             writer.write(stringJSON.toString());
             writer.flush();
             writer.close();

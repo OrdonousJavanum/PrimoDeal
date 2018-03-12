@@ -35,4 +35,6 @@
     <string name="hint_descriptionPublication">Description of the publication</string>
     <string name="hint_titlePublication">Title</string>
     <string name="textviewMenuCommercant">Menu Commerçant</string>
+    <string name="ShopName">Shop name</string>
+    <string name="AddressShop">Address shop</string>
 </resources>

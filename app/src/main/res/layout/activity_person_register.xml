@@ -130,21 +130,69 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:orientation="horizontal">
-                        <RadioButton android:id="@+id/radio_costumer"
+
+                        <RadioButton
+                            android:id="@+id/radio_costumer"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Costumer"
                             android:onClick="onRadioButtonClicked"
-                        />
-                        <RadioButton android:id="@+id/radio_seller"
+                            android:text="Costumer" />
+
+                        <RadioButton
+                            android:id="@+id/radio_seller"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="Seller"
                             android:onClick="onRadioButtonClicked"
-                        />
+                            android:text="Seller" />
                     </LinearLayout>
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
 
+                        <TextView
+                            android:id="@+id/ShopNameTextView"
+                            android:layout_width="81dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/ShopName" />
+
+                        <EditText
+                            android:id="@+id/inputShopName"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                             />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/textViewAddressShop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/AddressShop" />
+
+                        <EditText
+                            android:id="@+id/inputAddressShop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ems="10"
+                            android:inputType="textPersonName"
+                             />
+
+                    </LinearLayout>
 
 
                 </LinearLayout>

@@ -6,8 +6,38 @@ package com.henallux.primodeal.Model;
 
 public class Person {
 
-    private String email, password, role;
+    private String userName, password, status, addressShop, nameShop;
 
-    public Person(String email, String password, String role){}
+    public Person(String userName, String password,String addressShop, String nameShop, String status){
+        this.userName = userName;
+        this.password = password;
+        this.addressShop = addressShop;
+        this.nameShop = nameShop;
+        this.status = status;
+    }
+
+    public Person(String userName, String password, String status)
+    {
+        this.userName = userName;
+        this.password = password;
+        this.status = status;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
 
 }

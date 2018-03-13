@@ -12,6 +12,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.List;
 
@@ -53,6 +54,24 @@ public class PublicationDao {
         System.out.println(list);
 
         return list;
+    }
+
+    public int postPublication(Publication publication) throws Exception{
+        int code = 0;
+
+        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("POST");
+        connection.setRequestProperty("Content-type","application/json");
+
+        connection.connect();
+
+
+        String result = getResult(connection.getInputStream());
+        connection.disconnect();
+
+        return code;
     }
 
 }

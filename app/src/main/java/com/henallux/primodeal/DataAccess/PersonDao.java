@@ -1,22 +1,49 @@
 package com.henallux.primodeal.DataAccess;
 
+import com.google.gson.reflect.TypeToken;
 import com.henallux.primodeal.Model.LoginForm;
 
 import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import com.google.gson.*;
 import com.henallux.primodeal.Model.Person;
+import com.henallux.primodeal.Model.PersonReturnModel;
 
 /**
  * Created by bil on 19-11-17.
  */
 
 public class PersonDao {
+
+    private static PersonReturnModel _user;
+
+    private static <T> T jsonToObject(String jsonString, Class<T> clas)
+    {
+        Gson gson = new Gson();
+        return gson.fromJson(jsonString, clas);
+    }
+
+    private static String getResult(InputStream stream) throws IOException {
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        StringBuilder result = new StringBuilder();
+        String line;
+
+        while((line = reader.readLine()) != null) {
+            result.append(line);
+        }
+        reader.close();
+
+        return result.toString();
+    }
 
 
     public int login(String email, String password) throws  Exception {
@@ -45,9 +72,10 @@ public class PersonDao {
             writer.close();
             out.close();
             code=connection.getResponseCode();
+            String result = getResult(connection.getInputStream());
 
             if(code ==200){
-                BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
+               /* BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
                 StringBuilder stringBuilder = new StringBuilder();
                 String stringeJSON = "", line;
                 while ((line = reader.readLine()) != null)
@@ -55,6 +83,14 @@ public class PersonDao {
                     stringBuilder.append(line);
                 }
                 reader.close();
+                System.out.println(stringBuilder);*/
+
+               _user = (PersonReturnModel)jsonToObject(result, PersonReturnModel.class);
+
+
+                System.out.println(result);
+                System.out.println(_user.toString());
+
                 System.out.println(code);
 
             }

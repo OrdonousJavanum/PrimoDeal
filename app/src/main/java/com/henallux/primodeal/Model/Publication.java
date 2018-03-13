@@ -5,18 +5,30 @@ package com.henallux.primodeal.Model;
  */
 
 public class Publication {
-    private int  id;
-    private String title, description;
+
+    private String id, title, description;
     private Person person;
+    private int yes, no, dontknow;
 
-    public Publication(String title, String description){}
+    public Publication(String title, String description){
+
+    }
+
+    public Publication(String title, String description, Person person, int yes, int no, int dontknow ){
+        this.title = title;
+        this.description = description;
+        this.person = person;
+        this.yes = yes;
+        this.no = no;
+        this.dontknow = dontknow;
+    }
 
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

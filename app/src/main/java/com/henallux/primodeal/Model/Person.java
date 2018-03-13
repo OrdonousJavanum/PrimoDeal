@@ -25,6 +25,8 @@ public class Person {
         this.status = status;
     }
 
+
+
     public String getUserName() {
         return userName;
     }
@@ -39,6 +41,10 @@ public class Person {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String toString(){
+        return this.userName+" est sur l'application ";
     }
 
 

@@ -1,5 +1,6 @@
 package com.henallux.primodeal.DataAccess;
 
+
 import com.google.gson.reflect.TypeToken;
 import com.henallux.primodeal.Model.LoginForm;
 
@@ -25,10 +26,13 @@ import com.henallux.primodeal.Model.PersonReturnModel;
 public class PersonDao {
 
     private static PersonReturnModel _user;
+    static String tokenString;
+
 
     private static <T> T jsonToObject(String jsonString, Class<T> clas)
     {
         Gson gson = new Gson();
+        System.out.println("jsonString : "+jsonString);
         return gson.fromJson(jsonString, clas);
     }
 
@@ -46,9 +50,9 @@ public class PersonDao {
     }
 
 
-    public int login(String email, String password) throws  Exception {
+    public String login(String email, String password) throws  Exception {
 
-        int code=-1;
+        String result ="";
         Gson gson = new Gson();
         LoginForm model = new LoginForm(email,password);
         String stringJSON = gson.toJson(model);
@@ -71,8 +75,8 @@ public class PersonDao {
             writer.flush();
             writer.close();
             out.close();
-            code=connection.getResponseCode();
-            String result = getResult(connection.getInputStream());
+            int code=connection.getResponseCode();
+            result = getResult(connection.getInputStream());
 
             if(code ==200){
                /* BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
@@ -85,11 +89,14 @@ public class PersonDao {
                 reader.close();
                 System.out.println(stringBuilder);*/
 
-               _user = (PersonReturnModel)jsonToObject(result, PersonReturnModel.class);
+                _user =  (PersonReturnModel)jsonToObject(result, PersonReturnModel.class);
+
+                System.out.println(_user.getAccess_token());
+
+
 
 
                 System.out.println(result);
-                System.out.println(_user.toString());
 
                 System.out.println(code);
 
@@ -100,7 +107,7 @@ public class PersonDao {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return code;
+        return _user.getAccess_token();
     }
 
     public int inscription(String userName,String password,String nameShop, String addressShop ,String status) throws Exception

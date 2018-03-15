@@ -55,6 +55,8 @@ public class LoginActivity extends AppCompatActivity {
 
                     new LoginAsync().execute(email_path.getText().toString(), password_path.getText().toString()).get();
 
+                    System.out.println(personReturnModel.getStatus());
+
                     if("seller".equals(personReturnModel.getStatus()))
                     {
                         startActivity(new Intent(LoginActivity.this, SellerMenuActivity.class));

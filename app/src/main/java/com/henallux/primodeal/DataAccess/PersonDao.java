@@ -1,7 +1,7 @@
 package com.henallux.primodeal.DataAccess;
 
 
-import com.google.gson.reflect.TypeToken;
+import com.auth0.android.jwt.JWT;
 import com.henallux.primodeal.Model.LoginForm;
 
 import java.io.BufferedReader;
@@ -10,14 +10,13 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
-import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.List;
 
 import com.google.gson.*;
 import com.henallux.primodeal.Model.Person;
 import com.henallux.primodeal.Model.PersonReturnModel;
+import com.henallux.primodeal.Model.TokenPersonReturnModel;
 
 /**
  * Created by bil on 19-11-17.
@@ -25,6 +24,7 @@ import com.henallux.primodeal.Model.PersonReturnModel;
 
 public class PersonDao {
 
+    private static TokenPersonReturnModel userToken;
     private static PersonReturnModel _user;
     static String tokenString;
 
@@ -50,7 +50,7 @@ public class PersonDao {
     }
 
 
-    public String login(String email, String password) throws  Exception {
+    public PersonReturnModel login(String email, String password) throws  Exception {
 
         String result ="";
         Gson gson = new Gson();
@@ -79,21 +79,20 @@ public class PersonDao {
             result = getResult(connection.getInputStream());
 
             if(code ==200){
-               /* BufferedReader reader = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-                StringBuilder stringBuilder = new StringBuilder();
-                String stringeJSON = "", line;
-                while ((line = reader.readLine()) != null)
+
+                userToken =  (TokenPersonReturnModel)jsonToObject(result, TokenPersonReturnModel.class);
+
+                System.out.println(userToken.getAccess_token());
+                if(!userToken.getAccess_token().equals(""))
                 {
-                    stringBuilder.append(line);
+                     JWT jwt = new JWT(userToken.getAccess_token());
+
+                    System.out.println("id decoder : "+jwt.getSubject());
+
+                     _user = getPerson(jwt.getSubject());
+
+
                 }
-                reader.close();
-                System.out.println(stringBuilder);*/
-
-                _user =  (PersonReturnModel)jsonToObject(result, PersonReturnModel.class);
-
-                System.out.println(_user.getAccess_token());
-
-
 
 
                 System.out.println(result);
@@ -107,7 +106,30 @@ public class PersonDao {
         }catch(Exception e){
             e.printStackTrace();
         }
-        return _user.getAccess_token();
+        return _user;
+    }
+
+    public PersonReturnModel getPerson(String email) throws Exception{
+
+        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/ApplicationUsers/"+email);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Content-type","application/json");
+
+        connection.connect();
+
+
+        String result = getResult(connection.getInputStream());
+        connection.disconnect();
+        System.out.println("result user : "+ result);
+        _user =  (PersonReturnModel)jsonToObject(result, PersonReturnModel.class);
+
+        System.out.println("status of user : "+_user.getStatus());
+        System.out.println("email of user : "+_user.getEmail());
+
+        return _user;
+
     }
 
     public int inscription(String userName,String password,String nameShop, String addressShop ,String status) throws Exception

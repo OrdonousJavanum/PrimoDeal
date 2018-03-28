@@ -23,8 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.TypeUserRegisterActivity" />
-        <activity android:name=".Activities.CustomerRegisterActivity" />
         <activity android:name=".Activities.PersonRegisterActivity"></activity>
         <activity android:name=".Activities.SellerMenuActivity"/>
         <activity android:name=".Activities.NewPublicationSellerActivity"/>

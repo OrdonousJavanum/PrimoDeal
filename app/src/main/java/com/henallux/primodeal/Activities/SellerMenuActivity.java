@@ -44,7 +44,8 @@ public class SellerMenuActivity extends AppCompatActivity {
         allPublicationNamur.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(SellerMenuActivity.this, NewsfeedActivity.class);
+                startActivity(intent);
             }
         });
     }

@@ -6,21 +6,34 @@ package com.henallux.primodeal.Model;
 
 public class Publication {
 
-    private String id, title, description;
-    private Person person;
-    private int yes, no, dontknow;
+    private String id, title, description, applicationUserId;
+    private PersonReturnModel applicationUser;
+    private Integer yes, no, dontknow;
 
     public Publication(String title, String description){
 
     }
 
-    public Publication(String title, String description, Person person, int yes, int no, int dontknow ){
+    public Publication(String title, String description, PersonReturnModel applicationUser){
+        System.out.println("lalalalla");
+    }
+
+    public Publication(String title, String description, Integer yes, Integer no, Integer dontknow,PersonReturnModel applicationUser ){
         this.title = title;
         this.description = description;
-        this.person = person;
         this.yes = yes;
         this.no = no;
         this.dontknow = dontknow;
+        this.applicationUser = applicationUser;
+    }
+
+    public Publication(String title, String description, Integer yes, Integer no, Integer dontknow, String applicationUserId){
+        this.title = title;
+        this.description = description;
+        this.yes = yes;
+        this.no = no;
+        this.dontknow = dontknow;
+        this.applicationUserId = applicationUserId;
     }
 
 
@@ -48,11 +61,11 @@ public class Publication {
         this.description = description;
     }
 
-    public Person getPerson() {
-        return person;
+    public PersonReturnModel getApplicationUser() {
+        return applicationUser;
     }
 
-    public void setPerson(Person person) {
-        this.person = person;
+    public void setApplicationUser(PersonReturnModel applicationUser) {
+        this.applicationUser = applicationUser;
     }
 }

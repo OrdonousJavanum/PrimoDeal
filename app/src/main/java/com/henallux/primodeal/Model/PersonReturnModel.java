@@ -1,5 +1,8 @@
 package com.henallux.primodeal.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by bil on 15-03-18.
  */
@@ -10,11 +13,22 @@ public class PersonReturnModel {
     */
 
     public String status, nameShop, addressShop, id, userName, email;
+    public List<Publication> publications = new ArrayList<Publication>();
 
     public PersonReturnModel(String status, String nameShop, String addressShop, String id, String userName, String email){
+        this.id = id;
         this.status = status;
         this.userName = userName;
         this.email = email;
+    }
+
+    public PersonReturnModel(String status, String nameShop, String addressShop, String id, String userName, String email, List<Publication> publications){
+        this.id = id;
+        this.status = status;
+        this.userName = userName;
+        this.email = email;
+        this.publications = publications;
+        System.out.println("publication : "+publications);
     }
 
     public String getStatus() {
@@ -23,5 +37,23 @@ public class PersonReturnModel {
 
     public String getEmail() {
         return email;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public String getNameShop() {
+       if(nameShop == null)
+       {
+           return "inconu";
+       }else{
+           return nameShop;
+       }
+
+    }
+
+    public List<Publication> getPublications() {
+        return publications;
     }
 }

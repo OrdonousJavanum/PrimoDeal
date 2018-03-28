@@ -37,4 +37,5 @@
     <string name="textviewMenuCommercant">Menu Commerçant</string>
     <string name="ShopName">Shop name</string>
     <string name="AddressShop">Address shop</string>
+    <string name="radiobuttonActiveAnswer">With answer</string>
 </resources>

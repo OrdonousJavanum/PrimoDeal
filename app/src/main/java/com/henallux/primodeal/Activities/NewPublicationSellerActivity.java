@@ -1,6 +1,7 @@
 package com.henallux.primodeal.Activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -8,7 +9,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.Toast;
 
+import com.henallux.primodeal.DataAccess.PublicationDao;
 import com.henallux.primodeal.R;
 
 /**
@@ -17,10 +21,10 @@ import com.henallux.primodeal.R;
 
 public class NewPublicationSellerActivity extends AppCompatActivity {
 
-    private Button postButton, cancelButton, addQuestionButton, addAnswerButton;
-    private EditText titlePublication_path, descriptionPublication_path, question_path, answer_path;
-    private FragmentTransaction mFragmentTransaction;
-    private FragmentManager mFragmentManager;
+    private Button postButton, cancelButton;
+    private EditText titlePublication_path, descriptionPublication_path;
+    private int yes, no, dontknow;
+    private PublicationDao publicationDao = new PublicationDao();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,13 +39,11 @@ public class NewPublicationSellerActivity extends AppCompatActivity {
         postButton = (Button) findViewById(R.id.buttonPostPublication);
         cancelButton = (Button) findViewById(R.id.buttonCancelPublication);
 
-
-
         postButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-
+                new NewPostAsync().execute(titlePublication_path.getText().toString(), descriptionPublication_path.getText().toString());
 
             }
         });
@@ -56,6 +58,42 @@ public class NewPublicationSellerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public void onRadioButtonClicked(View view) {
+        // Is the button now checked?
+        boolean checked = ((RadioButton) view).isChecked();
+
+        // Check which radio button was clicked
+        switch(view.getId()) {
+            case R.id.radioButtonActiveAnswer:
+                if (checked)
+                    yes = no = dontknow = 0;
+        }
+    }
+
+
+    private class NewPostAsync extends AsyncTask<String, Void, Integer> {
+        int code = 0;
+
+        @Override
+        protected Integer doInBackground(String... strings){
+
+            try {
+                code = publicationDao.postPublication(strings[0], strings[1], yes, no, dontknow);
+                if(code == 201){
+                    startActivity(new Intent(NewPublicationSellerActivity.this, SellerMenuActivity.class));
+                }
+            } catch (Exception e) {
+                System.out.println("new post catch: "+e.getMessage());
+            }
+
+            return code;
+        }
+
 
     }
+
 }
+
+

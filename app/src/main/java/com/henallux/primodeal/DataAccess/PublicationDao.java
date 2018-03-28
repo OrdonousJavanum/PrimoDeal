@@ -56,20 +56,35 @@ public class PublicationDao {
         return list;
     }
 
-    public int postPublication(Publication publication) throws Exception{
+    public int postPublication(String title, String description, Integer yes, Integer no, Integer dontknow) throws Exception{
         int code = 0;
-
+        Gson gson = new Gson();
+        Publication model = new Publication(title,description, yes, no, dontknow, PersonDao._user.id);
+        String stringJSON = gson.toJson(model);
+        System.out.println(stringJSON);
+        try{
         URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Content-type","application/json");
 
+        connection.setDoOutput(true);
+        OutputStream out = connection.getOutputStream();
+        OutputStreamWriter writer = new OutputStreamWriter(out);
+        //OutputStreamWriter writer = new OutputStreamWriter(connection.getOutputStream());
         connection.connect();
 
-
+        writer.write(stringJSON.toString());
+        writer.flush();
+        writer.close();
+        out.close();
+        code=connection.getResponseCode();
         String result = getResult(connection.getInputStream());
-        connection.disconnect();
+        connection.disconnect();}
+        catch(Exception e){
+            System.out.println("catch new post dao"+e.getMessage().toString());
+        }
 
         return code;
     }

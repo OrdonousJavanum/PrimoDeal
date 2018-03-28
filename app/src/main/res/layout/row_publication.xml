@@ -26,5 +26,14 @@
         android:layout_below="@+id/title"
         tools:text="description"
         />
+    <TextView
+        android:id="@+id/fromNameShop"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@android:color/black"
+        android:layout_alignLeft="@+id/description"
+        android:layout_below="@+id/description"
+        tools:text="from : "
+        />
 
 </RelativeLayout>

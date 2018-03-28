@@ -63,7 +63,8 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     else
                     {
-                        startActivity(new Intent(LoginActivity.this, NewsfeedActivity.class));
+                        // startActivity(new Intent(LoginActivity.this, NewsfeedActivity.class));
+                        startActivity(new Intent(LoginActivity.this, SellerMenuActivity.class));
                     }
 
 

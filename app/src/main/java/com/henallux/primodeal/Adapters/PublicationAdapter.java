@@ -36,6 +36,8 @@ public class PublicationAdapter extends ArrayAdapter<Publication> {
             viewHolder = new TweetViewHolder();
             viewHolder.title = (TextView) convertView.findViewById(R.id.title);
             viewHolder.description = (TextView) convertView.findViewById(R.id.description);
+
+                viewHolder.fromNameShop = (TextView) convertView.findViewById(R.id.fromNameShop);
             convertView.setTag(viewHolder);
         }
 
@@ -43,6 +45,9 @@ public class PublicationAdapter extends ArrayAdapter<Publication> {
         Publication tweet = getItem(position);
         viewHolder.title.setText(tweet.getTitle());
         viewHolder.description.setText(tweet.getDescription());
+        if(tweet.getApplicationUser() != null)
+            viewHolder.description.setText(tweet.getApplicationUser().getNameShop());
+
        // viewHolder.avatar.setImageDrawable(new ColorDrawable(tweet.getColor()));
 
         return convertView;
@@ -51,6 +56,6 @@ public class PublicationAdapter extends ArrayAdapter<Publication> {
     private class TweetViewHolder{
         public TextView title;
         public TextView description;
-
+        public TextView fromNameShop;
     }
 }

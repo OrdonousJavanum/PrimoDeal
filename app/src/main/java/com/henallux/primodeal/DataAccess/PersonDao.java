@@ -17,6 +17,7 @@ import com.google.gson.*;
 import com.henallux.primodeal.Model.Person;
 import com.henallux.primodeal.Model.PersonReturnModel;
 import com.henallux.primodeal.Model.TokenPersonReturnModel;
+import com.henallux.primodeal.Model.UserNamePerson;
 
 /**
  * Created by bil on 19-11-17.
@@ -25,7 +26,8 @@ import com.henallux.primodeal.Model.TokenPersonReturnModel;
 public class PersonDao {
 
     private static TokenPersonReturnModel userToken;
-    private static PersonReturnModel _user;
+    public static PersonReturnModel _user;
+    public static UserNamePerson userNamePerson;
     static String tokenString;
 
 
@@ -128,6 +130,8 @@ public class PersonDao {
         System.out.println("status of user : "+_user.getStatus());
         System.out.println("email of user : "+_user.getEmail());
 
+        userNamePerson = new UserNamePerson(_user.getUserName());
+
         return _user;
 
     }
@@ -164,12 +168,14 @@ public class PersonDao {
             out.close();
             code=connection.getResponseCode();
             connection.disconnect();
-            if(code ==201){
+            if(code ==200){
                 System.out.print("oké inscrit");
+                _user = getPerson(userName);
             }
         }catch(Exception e){ e.printStackTrace(); }
         return code;
     }
+
 
 
 }

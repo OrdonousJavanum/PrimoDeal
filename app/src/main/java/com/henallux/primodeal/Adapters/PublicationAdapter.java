@@ -53,6 +53,7 @@ public class PublicationAdapter extends ArrayAdapter<Publication> {
         return convertView;
     }
 
+
     private class TweetViewHolder{
         public TextView title;
         public TextView description;

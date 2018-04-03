@@ -28,8 +28,8 @@ public class SellerMenuActivity extends AppCompatActivity {
         myPublicationsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*Intent intent = new Intent(SellerMenuActivity.this, OutilReservation.class);
-                startActivity(intent);*/
+                Intent intent = new Intent(SellerMenuActivity.this, NewsfeedFromSellerActivity.class);
+                startActivity(intent);
             }
         });
 

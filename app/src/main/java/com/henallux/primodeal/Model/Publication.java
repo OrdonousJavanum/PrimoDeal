@@ -1,47 +1,43 @@
 package com.henallux.primodeal.Model;
 
+import java.io.Serializable;
+import java.util.List;
+
 /**
  * Created by bil on 26-02-18.
  */
 
-public class Publication {
+public class Publication implements Serializable {
 
-    private String id, title, description, applicationUserId;
+    private String title, description, applicationUserId;
+    private Integer id;
     private PersonReturnModel applicationUser;
-    private Integer yes, no, dontknow;
+    private List<Response> responses;
 
     public Publication(String title, String description){
-
+        System.out.println("llllllllllelelele");
     }
 
-    public Publication(String title, String description, PersonReturnModel applicationUser){
-        System.out.println("lalalalla");
-    }
-
-    public Publication(String title, String description, Integer yes, Integer no, Integer dontknow,PersonReturnModel applicationUser ){
+    public Publication(Integer id, String title, String description, PersonReturnModel applicationUser, List<Response> responses){
+        this.id = id;
         this.title = title;
         this.description = description;
-        this.yes = yes;
-        this.no = no;
-        this.dontknow = dontknow;
         this.applicationUser = applicationUser;
+        this.responses = responses;
     }
 
-    public Publication(String title, String description, Integer yes, Integer no, Integer dontknow, String applicationUserId){
+    public Publication(String title, String description, String applicationUserId){
         this.title = title;
         this.description = description;
-        this.yes = yes;
-        this.no = no;
-        this.dontknow = dontknow;
         this.applicationUserId = applicationUserId;
     }
 
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -67,5 +63,13 @@ public class Publication {
 
     public void setApplicationUser(PersonReturnModel applicationUser) {
         this.applicationUser = applicationUser;
+    }
+
+    public void setResponses(List<Response> responses) {
+        this.responses = responses;
+    }
+
+    public List<Response> getResponses() {
+        return responses;
     }
 }

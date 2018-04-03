@@ -15,22 +15,7 @@ import com.henallux.primodeal.R;
  * A simple {@link Fragment} subclass.
  */
 public class QuestionFragment extends Fragment {
-private EditText inputQuestion;
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-   View view = inflater.inflate(R.layout.fragment_question, container, false);
-        inputQuestion = view.findViewById(R.id.input_question);
-   return view;
-
-
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-    }
 
 
 

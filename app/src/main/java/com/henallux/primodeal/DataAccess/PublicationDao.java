@@ -36,7 +36,7 @@ public class PublicationDao {
     }
 
     public List<Publication> Get() throws Exception {
-        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
+        URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("GET");
@@ -59,11 +59,11 @@ public class PublicationDao {
     public int postPublication(String title, String description, Integer yes, Integer no, Integer dontknow) throws Exception{
         int code = 0;
         Gson gson = new Gson();
-        Publication model = new Publication(title,description, yes, no, dontknow, PersonDao._user.id);
+        Publication model = new Publication(title,description, PersonDao._user.id);
         String stringJSON = gson.toJson(model);
         System.out.println(stringJSON);
         try{
-        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
+        URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications");
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("POST");

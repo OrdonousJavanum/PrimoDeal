@@ -61,7 +61,7 @@ public class PersonDao {
         System.out.println(stringJSON.toString());
         try{
 
-            URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
+            URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/jwt");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-type","application/json");
@@ -78,6 +78,7 @@ public class PersonDao {
             writer.close();
             out.close();
             int code=connection.getResponseCode();
+            System.out.println("code : "+code);
             result = getResult(connection.getInputStream());
 
             if(code ==200){
@@ -113,7 +114,7 @@ public class PersonDao {
 
     public PersonReturnModel getPerson(String email) throws Exception{
 
-        URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/ApplicationUsers/"+email);
+        URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/ApplicationUsers/"+email);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
         connection.setRequestMethod("GET");
@@ -153,7 +154,7 @@ public class PersonDao {
         String stringJSON = gson.toJson(model);
         System.out.println(stringJSON.toString());
         try{
-            URL url = new URL("http://webapplicationbetterdeal20180130015708.azurewebsites.net/api/Account");
+            URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/Account");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestMethod("POST");
             connection.setRequestProperty("Content-type","application/json");

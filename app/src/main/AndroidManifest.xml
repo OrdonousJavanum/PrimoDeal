@@ -27,7 +27,8 @@
         <activity android:name=".Activities.SellerMenuActivity"/>
         <activity android:name=".Activities.NewPublicationSellerActivity"/>
         <activity android:name=".Activities.NewsfeedActivity"/>
-
+        <activity android:name=".Activities.NewsfeedFromSellerActivity"/>
+        <activity android:name=".Activities.PublicationDetailResponseActivity"/>
 
 
     </application>

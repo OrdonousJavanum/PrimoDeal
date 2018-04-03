@@ -1,9 +1,14 @@
 package com.henallux.primodeal.Activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -13,6 +18,7 @@ import com.henallux.primodeal.DataAccess.PublicationDao;
 import com.henallux.primodeal.Model.Publication;
 import com.henallux.primodeal.R;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -34,17 +40,27 @@ public class NewsfeedActivity extends AppCompatActivity {
 
     }
 
+
+
     private void publicationView()
     {
         List<Publication>  publications = new ArrayList<>();
 
         publications.addAll(publicationList);
 
-
-
         PublicationAdapter publicationAdapter = new PublicationAdapter(this, publications);
-        ListView listView = (ListView)findViewById(R.id.gardenList);
+        final ListView listView = (ListView)findViewById(R.id.gardenList);
         listView.setAdapter(publicationAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               // Object listItem = listView.getItemAtPosition(position);
+                Publication publication = (Publication) listView.getItemAtPosition(position);
+                System.out.println("listItem : "+publication.getTitle());
+                startActivity(new Intent(NewsfeedActivity.this, PublicationDetailResponseActivity.class).putExtra("publication", publication));
+            }
+        });
     }
 
 

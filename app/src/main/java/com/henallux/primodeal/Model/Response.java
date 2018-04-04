@@ -32,4 +32,8 @@ public class Response implements Serializable {
     public String getResponse() {
         return response;
     }
+
+    public String getApplicationUserId() {
+        return applicationUserId;
+    }
 }

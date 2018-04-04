@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,6 +31,7 @@ import java.util.List;
 
 public class NewsfeedActivity extends AppCompatActivity {
     private List<Publication> publicationList;
+    SwipeRefreshLayout mSwipeRefreshLayout;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -36,7 +39,18 @@ public class NewsfeedActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_newsfeed);
 
+        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.activity_main_swipe_refresh_layout);
+
         new PublicationList().execute();
+
+        mSwipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new PublicationList().execute();
+                mSwipeRefreshLayout.setRefreshing(false);
+            }
+        });
+
 
     }
 

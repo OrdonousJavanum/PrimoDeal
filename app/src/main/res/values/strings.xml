@@ -43,4 +43,5 @@
     <string name="Noradiobutton">No</string>
     <string name="Indifferentradiobutton">indifferent</string>
     <string name="buttonPostResponse">Post</string>
+    <string name="swaprefresh">Swap Refresh</string>
 </resources>

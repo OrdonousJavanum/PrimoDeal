@@ -1,10 +1,13 @@
 package com.henallux.primodeal.Activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.henallux.primodeal.Model.PersonReturnModel;
@@ -18,6 +21,7 @@ public class StoreCardActivity  extends AppCompatActivity {
 
     private PersonReturnModel shop;
     private TextView nameShopTextView, addressShopTextView;
+    private Button googleMapButton;
 
 
     @Override
@@ -31,8 +35,19 @@ public class StoreCardActivity  extends AppCompatActivity {
         nameShopTextView = (TextView) findViewById(R.id.textViewNameShopCard);
         addressShopTextView = (TextView) findViewById(R.id.textViewAddressShopCard);
 
+        googleMapButton = (Button) findViewById(R.id.buttonSeeOnGoogleMap);
+
         nameShopTextView.setText(shop.getNameShop());
         addressShopTextView.setText(shop.getAddressShop());
+
+        googleMapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q="+shop.getNameShop());
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
+            }});
 
     }
 

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.henallux.primodeal.Adapters.PublicationAdapter;
+import com.henallux.primodeal.DataAccess.PersonDao;
 import com.henallux.primodeal.DataAccess.PublicationDao;
 import com.henallux.primodeal.Model.Publication;
 import com.henallux.primodeal.R;
@@ -51,7 +53,30 @@ public class NewsfeedActivity extends AppCompatActivity {
             }
         });
 
+    }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newsfeed, menu);
+        if("seller".equals(PersonDao._user.getStatus()))
+            menu.findItem(R.id.action_deconnection).setVisible(false);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_deconnection:
+                PersonDao.set_user(null);
+                startActivity(new Intent(NewsfeedActivity.this, LoginActivity.class));
+                return true;
+
+            case R.id.action_back:
+                startActivity(new Intent(NewsfeedActivity.this, SellerMenuActivity.class));
+                return true;
+        }
+
+        return true;
     }
 
 
@@ -70,6 +95,7 @@ public class NewsfeedActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                // Object listItem = listView.getItemAtPosition(position);
+                PublicationDetailResponseActivity.setPublication(null);
                 Publication publication = (Publication) listView.getItemAtPosition(position);
                 System.out.println("listItem : "+publication.getTitle());
                 startActivity(new Intent(NewsfeedActivity.this, PublicationDetailResponseActivity.class).putExtra("publication", publication));
@@ -102,6 +128,7 @@ public class NewsfeedActivity extends AppCompatActivity {
                 Toast.makeText(NewsfeedActivity.this, errorMsg, Toast.LENGTH_LONG).show();
             } else {
                 publicationList = list;
+                Collections.reverse(publicationList);
                 publicationView();
             }
         }

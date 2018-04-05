@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
@@ -27,9 +29,9 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
     private String response;
     private Integer cptYes, cptNo, cptIndifferent;
     private TextView titleTextView, descriptionTextView, yesTextView, noTextView, indifferentTextView;
-    private Button sendResponseButton;
+    private Button sendResponseButton, storeCardButton;
     private ResponseDao responseDao = new ResponseDao();
-    private Publication publication;
+    private static Publication publication;
     private Boolean isVoted;
 
     @Override
@@ -37,8 +39,9 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_publication);
         Bundle bundle = this.getIntent().getExtras();
+        if(publication == null){
         /*final Publication*/ publication = (Publication) bundle.getSerializable("publication");
-        System.out.println("idPublication : " + publication.getId());
+        System.out.println("idPublication : " + publication.getId());}
 
         titleTextView = (TextView) findViewById(R.id.textViewTitlePublicationDetail);
         descriptionTextView = (TextView) findViewById(R.id.textViewDescriptionPublicationDetail);
@@ -47,6 +50,7 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
         indifferentTextView = (TextView) findViewById(R.id.textViewIndifferentPublicationDetail);
 
         sendResponseButton = (Button) findViewById(R.id.buttonSendResponse);
+        storeCardButton = (Button) findViewById(R.id.buttonStoreCard);
 
         // List<Response> responses = publication.getResponses();
 
@@ -82,7 +86,12 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 try {
                     System.out.println("reponse : "+response);
-                    new SendResponseAsync().execute();
+                    if(response != null){
+                    new SendResponseAsync().execute();}
+                    else{
+                        Toast toast = Toast.makeText(getApplicationContext(),"check a response", Toast.LENGTH_LONG);
+                        toast.show();
+                    }
 
 
                 } catch (Exception e) {
@@ -93,7 +102,35 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
             }
         });
 
+        storeCardButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(PublicationDetailResponseActivity.this, StoreCardActivity.class).putExtra("shop", publication.getApplicationUser()));
+            }
+        });
 
+
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newsfeed, menu);
+        menu.findItem(R.id.action_deconnection).setVisible(false);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_deconnection:
+                return true;
+
+            case R.id.action_back:
+                startActivity(new Intent(PublicationDetailResponseActivity.this, NewsfeedActivity.class));
+                return true;
+        }
+
+        return true;
     }
 
     public void onRadioButtonResponseClicked(View view) {
@@ -138,6 +175,7 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
 
     }
 
-
-
+    public static void setPublication(Publication publication) {
+        PublicationDetailResponseActivity.publication = publication;
+    }
 }

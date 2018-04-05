@@ -177,6 +177,7 @@ public class PersonDao {
         return code;
     }
 
-
-
+    public static void set_user(PersonReturnModel _user) {
+        PersonDao._user = _user;
+    }
 }

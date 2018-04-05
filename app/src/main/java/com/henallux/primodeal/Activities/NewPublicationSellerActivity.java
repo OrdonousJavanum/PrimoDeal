@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -58,6 +60,28 @@ public class NewPublicationSellerActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_newsfeed, menu);
+        menu.findItem(R.id.action_deconnection).setVisible(false);
+        return true;
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()) {
+
+            case R.id.action_deconnection:
+
+                return true;
+
+            case R.id.action_back:
+                startActivity(new Intent(NewPublicationSellerActivity.this, SellerMenuActivity.class));
+                return true;
+        }
+
+        return true;
     }
 
     public void onRadioButtonClicked(View view) {

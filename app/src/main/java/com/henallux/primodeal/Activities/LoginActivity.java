@@ -93,6 +93,7 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 System.out.println("ici ");
+                PersonDao.set_user(null);
                 personReturnModel = personDao.login(strings[0],strings[1]);
 
             } catch (Exception e) {

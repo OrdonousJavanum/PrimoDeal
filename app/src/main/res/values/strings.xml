@@ -44,4 +44,11 @@
     <string name="Indifferentradiobutton">indifferent</string>
     <string name="buttonPostResponse">Post</string>
     <string name="swaprefresh">Swap Refresh</string>
+    <string name="backActionBar">Back</string>
+    <string name="deconnectionActionBar">deconnection</string>
+    <string name="textviewTitleStoreCard">Store Card</string>
+    <string name="buttonSeeOnGoogleMap">See on google Map</string>
+    <string name="textviewAddressShop">Address :</string>
+    <string name="textviewNameShopTitle">Name :</string>
+    <string name="buttonStoreCard">Store card</string>
 </resources>

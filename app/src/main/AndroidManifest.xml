@@ -29,6 +29,7 @@
         <activity android:name=".Activities.NewsfeedActivity"/>
         <activity android:name=".Activities.NewsfeedFromSellerActivity"/>
         <activity android:name=".Activities.PublicationDetailResponseActivity"/>
+        <activity android:name=".Activities.StoreCardActivity"/>
 
 
     </application>

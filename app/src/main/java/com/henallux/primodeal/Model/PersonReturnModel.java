@@ -54,6 +54,10 @@ public class PersonReturnModel implements Serializable {
 
     }
 
+    public String getAddressShop() {
+        return addressShop;
+    }
+
     public List<Publication> getPublications() {
         return publications;
     }

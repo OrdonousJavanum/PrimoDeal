@@ -28,6 +28,12 @@
             android:layout_height="177dp"
             android:text="TextView" />
 
+        <Button
+            android:id="@+id/buttonStoreCard"
+            android:layout_width="152dp"
+            android:layout_height="35dp"
+            android:text="@string/buttonStoreCard" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="39dp"
@@ -57,31 +63,31 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
+            android:layout_height="74dp"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radioButtonResYes"
-                android:onClick="onRadioButtonResponseClicked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onRadioButtonResponseClicked"
                 android:text="@string/Yesradiobutton" />
 
             <RadioButton
                 android:id="@+id/radioButtonResNo"
-                android:onClick="onRadioButtonResponseClicked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onRadioButtonResponseClicked"
                 android:text="@string/Noradiobutton" />
 
             <RadioButton
                 android:id="@+id/radioButtonResIndifferent"
-                android:onClick="onRadioButtonResponseClicked"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:onClick="onRadioButtonResponseClicked"
                 android:text="@string/Indifferentradiobutton" />
         </LinearLayout>
 

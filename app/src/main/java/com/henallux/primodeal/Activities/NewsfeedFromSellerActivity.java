@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.henallux.primodeal.Adapters.PublicationAdapter;
@@ -37,8 +39,20 @@ public class NewsfeedFromSellerActivity extends AppCompatActivity {
 
 
         PublicationAdapter publicationAdapter = new PublicationAdapter(this, publications);
-        ListView listView = (ListView)findViewById(R.id.gardenList);
+        final ListView listView = (ListView)findViewById(R.id.gardenList);
         listView.setAdapter(publicationAdapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                // Object listItem = listView.getItemAtPosition(position);
+                PublicationDetailResponseActivity.setPublication(null);
+                Publication publication = (Publication) listView.getItemAtPosition(position);
+                System.out.println("listItem : "+publication.getTitle());
+                startActivity(new Intent(NewsfeedFromSellerActivity.this, StatPublicationOfUserActivity.class).putExtra("publicationId", publication.getId()));
+            }
+        });
+
     }
 
     public boolean onCreateOptionsMenu(Menu menu) {

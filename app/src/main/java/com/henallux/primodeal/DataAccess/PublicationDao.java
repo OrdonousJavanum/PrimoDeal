@@ -56,6 +56,42 @@ public class PublicationDao {
         return list;
     }
 
+    public Publication Get(Integer idPublication) throws Exception {
+        URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications/"+idPublication);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("GET");
+        connection.setRequestProperty("Content-type","application/json");
+
+        connection.connect();
+
+
+        String result = getResult(connection.getInputStream());
+        connection.disconnect();
+
+        Type type = new TypeToken<Publication>(){}.getType();
+        Publication publication = new Gson().fromJson(result, type);
+
+        System.out.println(publication.getTitle());
+
+        return publication;
+    }
+
+    public void deletePublication(Integer idPublication) throws Exception{
+        URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications/"+idPublication);
+        HttpURLConnection connection = (HttpURLConnection) url.openConnection();
+
+        connection.setRequestMethod("DELETE");
+        connection.setRequestProperty("Content-type","application/json");
+
+        connection.connect();
+
+
+        String result = getResult(connection.getInputStream());
+        connection.disconnect();
+
+    }
+
     public int postPublication(String title, String description, Integer yes, Integer no, Integer dontknow) throws Exception{
         int code = 0;
         Gson gson = new Gson();

@@ -15,6 +15,7 @@ public class PersonReturnModel implements Serializable {
 
     public String status, nameShop, addressShop, id, userName, email;
     public List<Publication> publications = new ArrayList<Publication>();
+    public List<Response> responses = new ArrayList<Response>();
 
     public PersonReturnModel(String status, String nameShop, String addressShop, String id, String userName, String email){
         this.id = id;
@@ -23,12 +24,13 @@ public class PersonReturnModel implements Serializable {
         this.email = email;
     }
 
-    public PersonReturnModel(String status, String nameShop, String addressShop, String id, String userName, String email, List<Publication> publications){
+    public PersonReturnModel(String status, String nameShop, String addressShop, String id, String userName, String email, List<Publication> publications, List<Response> responses){
         this.id = id;
         this.status = status;
         this.userName = userName;
         this.email = email;
         this.publications = publications;
+        this.responses = responses;
         System.out.println("publication : "+publications);
     }
 

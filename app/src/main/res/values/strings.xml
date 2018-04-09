@@ -51,4 +51,7 @@
     <string name="textviewAddressShop">Address :</string>
     <string name="textviewNameShopTitle">Name :</string>
     <string name="buttonStoreCard">Store card</string>
+    <string name="buttonDeletePublication">Delete publication</string>
+    <string name="textViewStatTitle">Title</string>
+    <string name="textViewStatDescription" />
 </resources>

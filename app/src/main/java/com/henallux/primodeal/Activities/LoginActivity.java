@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.auth0.android.jwt.JWT;
@@ -25,6 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     private LoginForm loginForm;
     private PersonDao personDao = new PersonDao();
     private static PersonReturnModel personReturnModel;
+    private ProgressBar connectionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton = (Button) findViewById(R.id.buttonLogin);
         inscriptionButton = (Button) findViewById(R.id.buttonRegister);
+
+        connectionBar = (ProgressBar) findViewById(R.id.progressBar);
 
         ConnectivityManager cm = (ConnectivityManager)getSystemService(Context.CONNECTIVITY_SERVICE);
 
@@ -51,8 +55,9 @@ public class LoginActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(isValidEmail(email_path.getText())){
                 try {
-
+                    connectionBar.setVisibility(View.VISIBLE);
                     new LoginAsync().execute(email_path.getText().toString(), password_path.getText().toString()).get();
 
                     System.out.println(personReturnModel.getStatus());
@@ -70,7 +75,12 @@ public class LoginActivity extends AppCompatActivity {
 
                 } catch (Exception e) {
                     System.out.println("dans le catch");
+                    connectionBar.setVisibility(View.GONE);
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+                    toast.show();
+                }
+                }else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "incorrect email", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -86,8 +96,21 @@ public class LoginActivity extends AppCompatActivity {
         });
     }
 
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
 
     private class LoginAsync extends AsyncTask<String, Void, PersonReturnModel> {
+
+        @Override
+        protected void onPreExecute() {
+            connectionBar.setVisibility(View.VISIBLE);
+        }
 
         protected PersonReturnModel doInBackground(String... strings) {
 
@@ -100,9 +123,12 @@ public class LoginActivity extends AppCompatActivity {
                 Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
                 toast.show();
             }
-
+            // connectionBar.setVisibility(View.GONE);
             return personReturnModel;
         }
+
+        protected void onPostExecute(Void res) {
+            connectionBar.setVisibility(View.GONE);}
     }
 
 

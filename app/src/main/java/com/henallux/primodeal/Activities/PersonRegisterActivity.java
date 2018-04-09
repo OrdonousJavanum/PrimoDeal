@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
@@ -19,8 +20,10 @@ public class PersonRegisterActivity extends AppCompatActivity {
 
     private Button createPersonButton;
     private EditText email_path, password_path, addressShopPath, nameShopPath ;
+    private LinearLayout layoutNameShop, layoutAddressShop;
     private String status;
     private PersonDao personDao = new PersonDao();
+    private boolean validation = false;
 
 
     @Override
@@ -33,14 +36,25 @@ public class PersonRegisterActivity extends AppCompatActivity {
         addressShopPath = (EditText) findViewById(R.id.inputAddressShop);
         nameShopPath = (EditText) findViewById(R.id.inputShopName);
 
+        layoutAddressShop = (LinearLayout) findViewById(R.id.linearLayoutAddressShop);
+        layoutNameShop = (LinearLayout)findViewById(R.id.linearLayoutNameShop);
+
+        layoutNameShop.setVisibility(View.INVISIBLE);
+        layoutAddressShop.setVisibility(View.INVISIBLE);
+
         createPersonButton = (Button) findViewById(R.id.buttonRegister);
         createPersonButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                if(isValidEmail(email_path.getText())){
                 try {
                     new RecordPersonAsync().execute(email_path.getText().toString(), password_path.getText().toString(), addressShopPath.getText().toString(), nameShopPath.getText().toString());
                 } catch (Exception e) {
                     Toast toast = Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG);
+                    toast.show();
+                }}
+                else{
+                    Toast toast = Toast.makeText(getApplicationContext(), "incorrect email", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
@@ -78,11 +92,23 @@ public class PersonRegisterActivity extends AppCompatActivity {
             case R.id.radio_costumer:
                 if (checked)
                     status = "costumer";
+                    layoutNameShop.setVisibility(View.INVISIBLE);
+                    layoutAddressShop.setVisibility(View.INVISIBLE);
                     break;
             case R.id.radio_seller:
                 if (checked)
                     status="seller";
+                    layoutNameShop.setVisibility(View.VISIBLE);
+                    layoutAddressShop.setVisibility(View.VISIBLE);
                     break;
+        }
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        } else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
         }
     }
 

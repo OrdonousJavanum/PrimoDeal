@@ -55,7 +55,7 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
         // List<Response> responses = publication.getResponses();
 
         cptYes = cptNo = cptIndifferent = 0;
-
+        if(publication.getResponses() != null){
         for (int i = 0; i < publication.getResponses().size(); i++) {
 
             if ("yes".equals(publication.getResponses().get(i).getResponse()))
@@ -71,7 +71,7 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
                 View b = findViewById(R.id.buttonSendResponse);
                 b.setVisibility(View.GONE);
             }
-        }
+        }}
 
         titleTextView.setText(publication.getTitle());
         descriptionTextView.setText(publication.getDescription());
@@ -105,7 +105,11 @@ public class PublicationDetailResponseActivity extends AppCompatActivity {
         storeCardButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(PublicationDetailResponseActivity.this, StoreCardActivity.class).putExtra("shop", publication.getApplicationUser()));
+                if(publication.getApplicationUser() != null) {
+                    if(publication.getApplicationUser().getNameShop() != null) {
+                        startActivity(new Intent(PublicationDetailResponseActivity.this, StoreCardActivity.class).putExtra("shop", publication.getApplicationUser()));
+                    }
+                }
             }
         });
 

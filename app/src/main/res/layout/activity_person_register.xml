@@ -147,6 +147,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutNameShop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
@@ -171,6 +172,7 @@
                     </LinearLayout>
 
                     <LinearLayout
+                        android:id="@+id/linearLayoutAddressShop"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_weight="1"

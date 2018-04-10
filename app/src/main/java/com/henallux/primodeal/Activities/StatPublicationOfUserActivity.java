@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,6 +34,7 @@ public class StatPublicationOfUserActivity extends AppCompatActivity {
     private Integer publicationId;
     private int cptYes, cptNo, cptIndifferent;
     private TextView titlePublicationTextView, descriptionPublicationView;
+    private Button buttonDelete;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +47,8 @@ public class StatPublicationOfUserActivity extends AppCompatActivity {
 
         titlePublicationTextView = (TextView)findViewById(R.id.textViewStatTitle);
         descriptionPublicationView = (TextView) findViewById(R.id.textViewStatDescription);
+
+        buttonDelete = (Button) findViewById(R.id.buttonDeletePublication);
 
         try {
             new PublicationSeller().execute().get();
@@ -61,6 +66,16 @@ public class StatPublicationOfUserActivity extends AppCompatActivity {
                     if ("indifferent".equals(publication.getResponses().get(i).getResponse()))
                         cptIndifferent++;
                 }}
+
+            buttonDelete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    new DeletePublication().execute();
+                    startActivity(new Intent(StatPublicationOfUserActivity.this, NewsfeedFromSellerActivity.class));
+
+                }});
+
 
 
         } catch (InterruptedException e) {
@@ -151,5 +166,22 @@ public class StatPublicationOfUserActivity extends AppCompatActivity {
             return publication;
         }
     }
+
+    private class DeletePublication extends AsyncTask<Void, Void, String>
+    {
+        String msg;
+
+        @Override
+        protected String doInBackground(Void... voids) {
+            PublicationDao publicationDao = new PublicationDao();
+            try {
+                msg = publicationDao.deletePublication(publicationId);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return msg;
+        }
+    }
+
 }
 

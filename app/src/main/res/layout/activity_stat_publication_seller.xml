@@ -29,9 +29,9 @@
     </com.github.mikephil.charting.charts.HorizontalBarChart>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonDeletePublication"
         android:layout_width="match_parent"
-        android:text="Button"
+        android:text="@string/buttonDeletePublication"
         android:layout_height="wrap_content" />
 
 

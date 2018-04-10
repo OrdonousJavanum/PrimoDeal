@@ -54,4 +54,5 @@
     <string name="buttonDeletePublication">Delete publication</string>
     <string name="textViewStatTitle">Title</string>
     <string name="textViewStatDescription" />
+    <string name="ghj">gh</string>
 </resources>

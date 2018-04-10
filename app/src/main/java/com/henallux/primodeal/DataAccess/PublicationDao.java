@@ -77,7 +77,7 @@ public class PublicationDao {
         return publication;
     }
 
-    public void deletePublication(Integer idPublication) throws Exception{
+    public String deletePublication(Integer idPublication) throws Exception{
         URL url = new URL("https://webapplicationbetterdeal20180130015708.azurewebsites.net/api/publications/"+idPublication);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
 
@@ -90,6 +90,7 @@ public class PublicationDao {
         String result = getResult(connection.getInputStream());
         connection.disconnect();
 
+        return result;
     }
 
     public int postPublication(String title, String description, Integer yes, Integer no, Integer dontknow) throws Exception{

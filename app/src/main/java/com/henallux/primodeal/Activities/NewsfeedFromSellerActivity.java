@@ -1,6 +1,7 @@
 package com.henallux.primodeal.Activities;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
@@ -16,7 +17,9 @@ import com.henallux.primodeal.Model.Publication;
 import com.henallux.primodeal.R;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 /**
  * Created by bil on 28-03-18.
@@ -24,7 +27,7 @@ import java.util.List;
 
 public class NewsfeedFromSellerActivity extends AppCompatActivity {
 
-
+    private PersonReturnModel personReturnModel;
 
     @Override
     public void onCreate(Bundle savedInstanceState)
@@ -34,8 +37,19 @@ public class NewsfeedFromSellerActivity extends AppCompatActivity {
 
         List<Publication>  publications = new ArrayList<>();
 
-        publications.addAll(PersonDao._user.getPublications());
-        System.out.println(PersonDao._user.getPublications());
+        try {
+            new UserSeller().execute().get();
+            /*publications.addAll(PersonDao._user.getPublications());*/
+            Collections.reverse(personReturnModel.getPublications());
+            publications.addAll(personReturnModel.getPublications());
+            System.out.println(personReturnModel.getPublications());
+
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+
 
 
         PublicationAdapter publicationAdapter = new PublicationAdapter(this, publications);
@@ -75,6 +89,21 @@ public class NewsfeedFromSellerActivity extends AppCompatActivity {
         }
 
         return true;
+    }
+
+    private class UserSeller extends AsyncTask<Void,Void,PersonReturnModel>
+    {
+        private String errorMsg;
+        @Override
+        protected PersonReturnModel doInBackground(Void... voids) {
+            PersonDao personDao = new PersonDao();
+            try {
+                personReturnModel = personDao.getPerson(PersonDao._user.getEmail());
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return personReturnModel;
+        }
     }
 
 
